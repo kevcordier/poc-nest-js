@@ -1,0 +1,5 @@
+type ListMetadata {
+    count: Int!
+}
+
+scalar Date

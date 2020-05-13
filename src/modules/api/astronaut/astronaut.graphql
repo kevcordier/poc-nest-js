@@ -1,0 +1,26 @@
+type Astronaut{
+    id: String!
+    firstName:String!
+    lastName: String!
+    birthDate: Date
+    planet: Planet
+}
+
+input AstronautFilter {
+    q: String
+    firstName: String
+    lastName: String
+    planet: PlanetFilter
+}
+
+type Query{
+    Astronaut(id: ID): Astronaut
+    allAstronauts(page: Int, perPage: Int, sortField: String, sortOrder: String, filter: AstronautFilter): [Astronaut]
+    _allAstronautsMeta(page: Int, perPage: Int, sortField: String, sortOrder: String, filter: AstronautFilter): ListMetadata
+}
+
+type Mutation {
+    createAstronaut(firstName: String!, lastName: String!, birthDate: Date!, planetId: ID): Astronaut
+    updateAstronaut(id: ID!, firstName: String!, lastName: String!, birthDate: Date!, planetId: ID): Astronaut
+    deleteAstronaut(id: ID!): Astronaut
+}

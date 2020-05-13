@@ -1,0 +1,25 @@
+type Planet{
+    id: ID!
+    name:String!
+    color:String!
+    astronauts: [Astronaut!]
+}
+
+input PlanetFilter {
+    q: String
+    id: ID
+    ids: [ID]
+    name: String
+}
+
+type Query{
+    Planet(id: ID): Planet!
+    allPlanets(page: Int, perPage: Int, sortField: String, sortOrder: String, filter: PlanetFilter): [Planet!]
+    _allPlanetsMeta(page: Int, perPage: Int, sortField: String, sortOrder: String, filter: PlanetFilter): ListMetadata
+}
+
+type Mutation {
+    createPlanet(name: String!, color: String!): Planet
+    updatePlanet(id: ID, name: String!, color: String!): Planet
+    deletePlanet(id: ID): Planet
+}
